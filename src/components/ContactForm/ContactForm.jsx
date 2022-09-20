@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { InputName, ContactFormAdd,SubmitBtn } from './ContactForm.styled';
+import { InputName, ContactFormAdd, SubmitBtn } from './ContactForm.styled';
 export default class ContactForm extends Component {
-
   state = {
     name: 'Anna',
     number: '55566645',
@@ -19,14 +18,17 @@ export default class ContactForm extends Component {
     });
   };
 
-
   render() {
     const { name, number } = this.state;
-    const { onChangeForma, onAddContact } = this.props;
+    const { onAddContact } = this.props;
     // console.log('🚀 ~changeName', onChangeForma);
     return (
       <div>
-        <ContactFormAdd onSubmit={e => onAddContact({e:e, onResetInput:this.onResetInput})}>
+        <ContactFormAdd
+          onSubmit={e =>
+            onAddContact({ e: e, onResetInput: this.onResetInput })
+          }
+        >
           <InputName
             type="text"
             name="name"

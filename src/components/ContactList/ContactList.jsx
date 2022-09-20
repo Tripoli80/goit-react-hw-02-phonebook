@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ListContacts, ContactItem, RemoveBtn } from './ContactList.styled';
 export default class ContactList extends Component {
   render() {
-    const contacts = this.props.state.contacts;
     const { onRemoveContact, toVisibleContacts } = this.props;
     // console.log(contacts);
     return (
