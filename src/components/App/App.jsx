@@ -35,21 +35,21 @@ export class App extends Component {
       this.checkExistContact({ dataToCheck: name.value, keyWhereCheck: 'name' })
     ) {
       alert(`${name.value} already in book`);
-    } else {
-      this.setState(prevState => {
-        const neewArr = [
-          ...prevState.contacts,
-          {
-            id: nanoid(),
-            [name.name]: name.value,
-            [number.name]: number.value,
-          },
-        ];
-        return {
-          contacts: neewArr,
-        };
-      }, onResetInput());
+      return;
     }
+    this.setState(prevState => {
+      const neewArr = [
+        ...prevState.contacts,
+        {
+          id: nanoid(),
+          [name.name]: name.value,
+          [number.name]: number.value,
+        },
+      ];
+      return {
+        contacts: neewArr,
+      };
+    }, onResetInput());
   };
 
   onRemoveContact = id => {
@@ -59,7 +59,8 @@ export class App extends Component {
     });
   };
 
-  toVisibleContacts = () => {
+  getVisibleContacts = () => {
+    // console.log(contacts);
     const resContacts = this.state.contacts.filter(item =>
       item.name.toLowerCase().includes(this.state.filter.toLowerCase())
     );
@@ -68,15 +69,16 @@ export class App extends Component {
   };
 
   render() {
+    const visiblContactsList =this.getVisibleContacts()
     return (
       <Container>
-        <Titel> React homework template</Titel>
+        <Titel> Phone Book</Titel>
         <ContactForm state={this.state} onAddContact={this.onAddContact} />
         <Filter state={this.state} onChangeForma={this.onChangeForma} />
         <Titel> Contact List</Titel>
         <ContactList
           state={this.state}
-          toVisibleContacts={this.toVisibleContacts}
+          visiblContactsList={visiblContactsList}
           onRemoveContact={this.onRemoveContact}
         />
       </Container>

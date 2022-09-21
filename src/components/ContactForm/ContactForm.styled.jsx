@@ -5,6 +5,8 @@ const ContactFormAdd = styled.form`
 `;
 
 const InputName = styled.input`
+
+
   margin: 15px;
   padding: 10px;
   border: 0;
